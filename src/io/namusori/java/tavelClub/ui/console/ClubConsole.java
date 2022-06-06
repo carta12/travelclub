@@ -2,6 +2,7 @@ package io.namusori.java.tavelClub.ui.console;
 
 import io.namusori.java.tavelClub.entity.TravelClub;
 import io.namusori.java.tavelClub.service.ClubService;
+import io.namusori.java.tavelClub.service.ServiceLogicLifeCycler;
 import io.namusori.java.tavelClub.service.logic.ClubServiceLogic;
 import io.namusori.java.tavelClub.util.ConsoleUtil;
 
@@ -11,7 +12,7 @@ public class ClubConsole {
 
     public ClubConsole() {
         this.consoleUtil = new ConsoleUtil();
-        this.clubService = new ClubServiceLogic();
+        this.clubService = ServiceLogicLifeCycler.getUniqueInstance().getClubService();
     }
 
     public void register() {
