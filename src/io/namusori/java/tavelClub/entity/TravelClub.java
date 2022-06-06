@@ -54,7 +54,7 @@ public class TravelClub {
         StringBuilder builder = new StringBuilder();
         builder.append("TravelClub club ID : ").append(id);
         builder.append(", ClubName : ").append(clubName);
-        builder.append(", Intro").append(intro);
+        builder.append(", Intro : ").append(intro);
         builder.append(", FoundationDay : ").append(foundationDay);
 
         return builder.toString();
