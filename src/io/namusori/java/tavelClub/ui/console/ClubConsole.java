@@ -77,14 +77,58 @@ public class ClubConsole {
             foundClubs = clubService.findByName(clubName);
 
             if (foundClubs != null && foundClubs.length != 0) {
-                for(TravelClub club : foundClubs) {
+                for (TravelClub club : foundClubs) {
                     System.out.println(club);
                 }
             } else {
                 System.out.println("Can't find club, Name : " + clubName);
             }
         }
+    }
 
+    private TravelClub findOne() {
+        TravelClub foundClub = null;
+
+        while (true) {
+            String clubId = consoleUtil.getValueOf("Club id to find(0.Club Menu)");
+            if (clubId.equals("0")) {
+                break;
+            }
+
+            foundClub = clubService.findById(clubId);
+            if (foundClub != null) {
+                break;
+            } else {
+                System.out.println("Can't not find club, ID : " + clubId);
+            }
+        }
+        return foundClub;
+    }
+
+    public void modify() {
+        TravelClub targetClub = findOne();
+
+        String newName = consoleUtil.getValueOf("New Club name(0.Club Menu, Enter. No Change.) : ");
+        if (newName.equals("0")) {
+            return;
+        }
+        if (!newName.isEmpty()) {
+            targetClub.setClubName(newName);
+        }
+
+        String newIntro = consoleUtil.getValueOf("New Club intro(0.Club Menu, Enter. No Change.) : ");
+        if (newIntro.equals("0")) {
+            return;
+        }
+        if (!newIntro.isEmpty()) {
+            targetClub.setIntro(newIntro);
+        }
+
+        clubService.modify(targetClub);
+        System.out.println("Modify Club : " + targetClub);
+    }
+
+    public void remove() {
 
     }
 }
